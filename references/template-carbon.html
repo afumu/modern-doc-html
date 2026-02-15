@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* 配色方案: 碳薄荷暗黑 */
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1c1c1c;
+            --bg-card: #252525;
+            --text-primary: #e5e5e5;
+            --text-secondary: #b8b8b8;
+            --accent-green: #00ffa3;
+            --accent-blue: #00d4ff;
+            --accent-purple: #b794f6;
+            --accent-orange: #ffa500;
+            --accent-cyan: #00ffa3;
+            --accent-pink: #ff6ec7;
+            --border-color: #333333;
+            --code-bg: #0d0d0d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(0, 255, 163, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 0%, rgba(183, 148, 246, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid var(--accent-purple);
+            border-radius: 999px;
+            color: var(--accent-purple);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards 0.2s;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards 0.4s;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards 0.6s;
+        }
+
+        .hero-arrow {
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards 0.8s;
+        }
+
+        .hero-arrow span {
+            display: block;
+            font-size: 2rem;
+            color: var(--text-secondary);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* Entry Animations */
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-10deg) scale(0.9); }
+            to { opacity: 1; transform: rotate(0) scale(1); }
+        }
+
+        /* Continuous Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(0, 255, 163, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 163, 0.6); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Animation Classes */
+        .anim-slideInLeft { animation: slideInLeft 0.6s ease forwards; }
+        .anim-slideInRight { animation: slideInRight 0.6s ease forwards; }
+        .anim-scaleIn { animation: scaleIn 0.6s ease forwards; }
+        .anim-rotateIn { animation: rotateIn 0.6s ease forwards; }
+        .anim-float { animation: float 3s ease-in-out infinite; }
+        .anim-pulse { animation: pulse 2s ease-in-out infinite; }
+        .anim-glow { animation: glow 2s ease-in-out infinite; }
+        .anim-spin { animation: spin 2s linear infinite; }
+        .anim-shake { animation: shake 0.5s ease; }
+
+        /* Stagger delays */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Sections */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section.center {
+            text-align: center;
+        }
+
+        .section.center .section-label,
+        .section.center h2,
+        .section.center p {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+            max-width: 800px;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Icon Styles */
+        .icon-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .icon-wrapper.circle {
+            border-radius: 50%;
+            padding: 1rem;
+            background: rgba(0, 255, 163, 0.1);
+        }
+
+        .icon-wrapper.square {
+            border-radius: 8px;
+            padding: 1rem;
+            background: rgba(0, 255, 163, 0.1);
+        }
+
+        .icon-sm { width: 1rem; height: 1rem; }
+        .icon-md { width: 1.5rem; height: 1.5rem; }
+        .icon-lg { width: 2rem; height: 2rem; }
+        .icon-xl { width: 3rem; height: 3rem; }
+
+        .icon-blue { color: var(--accent-blue); }
+        .icon-purple { color: var(--accent-purple); }
+        .icon-green { color: var(--accent-green); }
+        .icon-orange { color: var(--accent-orange); }
+        .icon-cyan { color: var(--accent-cyan); }
+        .icon-pink { color: var(--accent-pink); }
+
+        .icon-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 2rem;
+            height: 2rem;
+            color: var(--accent-blue);
+        }
+
+        .icon-interactive {
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .icon-interactive:hover {
+            transform: scale(1.1);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Code block */
+        .code-block {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            white-space: pre;
+        }
+
+        .code-block .comment { color: #6a737d; }
+        .code-block .keyword { color: #ff7b72; }
+        .code-block .string { color: #a5d6ff; }
+        .code-block .func { color: #d2a8ff; }
+        .code-block .symbol { color: #79c0ff; }
+
+        /* Divider */
+        .divider {
+            max-width: 1100px;
+            margin: 0 auto;
+            border: none;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: var(--accent-purple);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-badge">{{BADGE}}</div>
+    <h1>{{HERO_TITLE}}</h1>
+    <p class="hero-sub">{{HERO_SUBTITLE}}</p>
+    <div class="hero-arrow"><span>↓</span></div>
+</section>
+
+<!-- Content Sections -->
+{{CONTENT}}
+
+<!-- Footer -->
+<footer class="footer">
+    <p>{{FOOTER}}</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+// Initialize Lucide icons
+lucide.createIcons();
+</script>
+
+</body>
+</html>

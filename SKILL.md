@@ -9,9 +9,42 @@ description: 将文档和内容转换为现代化、深色主题的HTML页面，
 
 ## 工作流程
 
+**重要提示：对于长文档，必须使用分段写入策略！**
+
+### 分段写入策略
+
+当源文档内容较长时（超过3个主要章节），必须采用分段写入方式：
+
+1. **首次写入** - 创建HTML文件骨架
+   - 使用 Write 工具创建完整的HTML文件
+   - 包含：`<head>`、Hero区、前1-2个章节的内容、Footer、`</body></html>`
+   - 确保HTML结构完整可用
+
+2. **后续追加** - 逐步添加剩余章节
+   - 使用 Edit 工具在 Footer 之前插入新章节
+   - 每次追加2-3个章节
+   - 保持HTML结构完整性
+
+3. **分段示例**
+   ```
+   第一次 Write: <html>...<hero>...章节1...章节2...<footer></body></html>
+   第二次 Edit: 在footer前插入章节3、章节4
+   第三次 Edit: 在footer前插入章节5、章节6
+   ```
+
+**为什么要分段写入？**
+- 避免单次写入内容过长导致超时或截断
+- 提高生成速度和成功率
+- 便于调试和修改
+
+---
+
+### 详细步骤
+
 1. **理解内容结构**
    - 阅读源文档/内容
    - 识别主要章节和层次结构
+   - **评估文档长度，决定是否需要分段写入**
    - 注意任何特殊元素（代码块、列表、表格）
 
 2. **提取关键信息**
@@ -20,9 +53,37 @@ description: 将文档和内容转换为现代化、深色主题的HTML页面，
    - 主要章节及标题
    - 内容段落
    - 特殊元素（卡片、代码块等）
+   - **规划分段策略：将章节分组（每组2-3个章节）**
 
-3. **使用模板生成HTML**
-   - 从 `references/template.html` 读取模板
+3. **选择配色方案并读取模板**
+
+   提供四种独立的配色方案模板：
+
+   - `references/template-classic.html` - **经典蓝紫**（默认推荐）
+     - 专业科技感，蓝色+紫色渐变
+     - 适合技术文档、产品介绍
+
+   - `references/template-cyberpunk.html` - **赛博朋克**
+     - 霓虹发光效果，电光蓝+赛博粉+黑客绿
+     - 未来感强烈，适合创意项目、游戏相关
+
+   - `references/template-apple.html` - **苹果极简**
+     - 纯黑背景+纯白文字，极简高端
+     - 专业优雅，适合高端产品、设计作品
+
+   - `references/template-carbon.html` - **碳薄荷**
+     - 炭黑+发光薄荷绿，硬核科技
+     - 高性能感，适合开发工具、技术平台
+
+   **选择建议：**
+   - 如果用户未指定，默认使用 `template-classic.html`
+   - 如果用户提到"科技感"、"专业"，使用 `template-classic.html`
+   - 如果用户提到"炫酷"、"未来"、"霓虹"，使用 `template-cyberpunk.html`
+   - 如果用户提到"极简"、"高端"、"苹果风格"，使用 `template-apple.html`
+   - 如果用户提到"硬核"、"性能"、"开发者"，使用 `template-carbon.html`
+
+4. **使用模板生成HTML**
+   - 从选定的模板文件读取内容
    - 替换占位符：
      - `{{TITLE}}` - 页面标题
      - `{{BADGE}}` - 英雄区徽章文本
@@ -31,7 +92,7 @@ description: 将文档和内容转换为现代化、深色主题的HTML页面，
      - `{{CONTENT}}` - 主要内容章节
      - `{{FOOTER}}` - 页脚内容
 
-4. **构建内容章节**
+5. **构建内容章节**
    每个章节遵循此模式：
    ```html
    <section class="section center" id="section-id">
@@ -50,7 +111,7 @@ description: 将文档和内容转换为现代化、深色主题的HTML页面，
    <section class="section center" id="section-id">
    ```
 
-5. **使用适当的内容组件**
+6. **使用适当的内容组件**
 
    **带表情符号图标的卡片网格：**
    ```html
@@ -100,7 +161,7 @@ description: 将文档和内容转换为现代化、深色主题的HTML页面，
    </div>
    ```
 
-6. **选择章节标签颜色**
+7. **选择章节标签颜色**
    可用的颜色组合：
    - 紫色：`background: rgba(168,85,247,0.15); color: var(--accent-purple);`
    - 蓝色：`background: rgba(59,130,246,0.15); color: var(--accent-blue);`
@@ -109,15 +170,57 @@ description: 将文档和内容转换为现代化、深色主题的HTML页面，
    - 青色：`background: rgba(6,182,212,0.15); color: var(--accent-cyan);`
    - 粉色：`background: rgba(236,72,153,0.15); color: #ec4899;`
 
-7. **编写最终HTML文件**
+8. **编写HTML文件**
+
+   **对于短文档（≤3个章节）：**
+   - 使用 Write 工具一次性写入完整HTML
+   - 包含所有内容和完整结构
+
+   **对于长文档（>3个章节）：**
+   - **第一步**：使用 Write 工具创建HTML骨架
+     - 包含：完整的 `<head>`、Hero区、前2个章节、Footer、`</body></html>`
+     - 确保HTML结构完整可用
+
+   - **第二步及后续**：使用 Edit 工具追加剩余章节
+     - 找到 `<!-- Footer -->` 或 `<footer class="footer">` 标记
+     - 在 Footer 之前插入新的章节内容
+     - 每次追加2-3个章节
+     - 保持 `<hr class="divider">` 分隔符
+
+   - **追加示例**：
+     ```
+     旧内容：
+     ...章节2...</section>
+     <hr class="divider">
+     <!-- Footer -->
+     <footer>...</footer>
+
+     新内容（在Footer前插入）：
+     ...章节2...</section>
+     <hr class="divider">
+
+     <!-- 新增章节3 -->
+     <section class="section center">...</section>
+     <hr class="divider">
+
+     <!-- 新增章节4 -->
+     <section class="section center">...</section>
+     <hr class="divider">
+
+     <!-- Footer -->
+     <footer>...</footer>
+     ```
+
+   **注意事项：**
    - 保存到用户指定位置或建议文件名
    - 确保正确的HTML结构和闭合标签
    - **确保所有section都添加了center类以保持居中**
+   - 每次追加后验证HTML结构完整性
 
 ## 设计特性
 
 - **深色主题** 配合渐变光效
-- **四种科技感配色方案** 可实时切换：
+- **四种独立配色方案模板**：
   - **经典蓝紫**（默认）：专业科技感，蓝色+紫色渐变
   - **赛博朋克**：霓虹发光效果，电光蓝+赛博粉+黑客绿，未来感强烈
   - **苹果极简**：纯黑背景+纯白文字，极简高端，专业优雅

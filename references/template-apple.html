@@ -8,42 +8,8 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* 配色方案 1: 经典蓝紫（默认） */
+        /* 配色方案: 苹果极简科技 */
         :root {
-            --bg-primary: #0a0e17;
-            --bg-secondary: #111827;
-            --bg-card: #1a2332;
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --accent-green: #22c55e;
-            --accent-blue: #3b82f6;
-            --accent-purple: #a855f7;
-            --accent-orange: #f97316;
-            --accent-cyan: #06b6d4;
-            --accent-pink: #ec4899;
-            --border-color: #1e293b;
-            --code-bg: #0d1117;
-        }
-
-        /* 配色方案 2: 赛博朋克霓虹 */
-        [data-theme="cyberpunk"] {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #001F3D;
-            --bg-card: #1a1a2e;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0a0;
-            --accent-green: #00ff00;
-            --accent-blue: #00ffff;
-            --accent-purple: #ff00ff;
-            --accent-orange: #ff6b00;
-            --accent-cyan: #00ffff;
-            --accent-pink: #ff3d94;
-            --border-color: #2a2a3e;
-            --code-bg: #0d0d0d;
-        }
-
-        /* 配色方案 3: 苹果极简科技 */
-        [data-theme="apple"] {
             --bg-primary: #000000;
             --bg-secondary: #1c1c1e;
             --bg-card: #2c2c2e;
@@ -57,23 +23,6 @@
             --accent-pink: #ff2d55;
             --border-color: #38383a;
             --code-bg: #1c1c1e;
-        }
-
-        /* 配色方案 4: 碳薄荷暗黑 */
-        [data-theme="carbon"] {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1c1c1c;
-            --bg-card: #252525;
-            --text-primary: #e5e5e5;
-            --text-secondary: #b8b8b8;
-            --accent-green: #00ffa3;
-            --accent-blue: #00d4ff;
-            --accent-purple: #b794f6;
-            --accent-orange: #ffa500;
-            --accent-cyan: #00ffa3;
-            --accent-pink: #ff6ec7;
-            --border-color: #333333;
-            --code-bg: #0d0d0d;
         }
 
         body {
@@ -101,9 +50,9 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background:
-                radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 0%, rgba(236, 72, 153, 0.06) 0%, transparent 50%);
+                radial-gradient(ellipse at 20% 50%, rgba(0, 122, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(175, 82, 222, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 0%, rgba(255, 45, 85, 0.06) 0%, transparent 50%);
             pointer-events: none;
         }
 
@@ -168,8 +117,6 @@
             50% { transform: translateY(10px); }
         }
 
-        /* ==================== New Animations ==================== */
-
         /* Entry Animations */
         @keyframes slideInLeft {
             from { opacity: 0; transform: translateX(-50px); }
@@ -203,8 +150,8 @@
         }
 
         @keyframes glow {
-            0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.3); }
-            50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.6); }
+            0%, 100% { box-shadow: 0 0 5px rgba(0, 122, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(0, 122, 255, 0.6); }
         }
 
         @keyframes spin {
@@ -261,7 +208,6 @@
             transform: translateY(0);
         }
 
-        /* 确保section内容居中 */
         .section.center {
             text-align: center;
         }
@@ -327,9 +273,7 @@
             margin-bottom: 1rem;
         }
 
-        /* ==================== Icon Styles ==================== */
-
-        /* Icon wrapper for background circles/squares */
+        /* Icon Styles */
         .icon-wrapper {
             display: inline-flex;
             align-items: center;
@@ -340,22 +284,20 @@
         .icon-wrapper.circle {
             border-radius: 50%;
             padding: 1rem;
-            background: rgba(59, 130, 246, 0.1);
+            background: rgba(0, 122, 255, 0.1);
         }
 
         .icon-wrapper.square {
             border-radius: 8px;
             padding: 1rem;
-            background: rgba(59, 130, 246, 0.1);
+            background: rgba(0, 122, 255, 0.1);
         }
 
-        /* Icon sizes */
         .icon-sm { width: 1rem; height: 1rem; }
         .icon-md { width: 1.5rem; height: 1.5rem; }
         .icon-lg { width: 2rem; height: 2rem; }
         .icon-xl { width: 3rem; height: 3rem; }
 
-        /* Icon colors */
         .icon-blue { color: var(--accent-blue); }
         .icon-purple { color: var(--accent-purple); }
         .icon-green { color: var(--accent-green); }
@@ -363,7 +305,6 @@
         .icon-cyan { color: var(--accent-cyan); }
         .icon-pink { color: var(--accent-pink); }
 
-        /* Icon box component */
         .icon-box {
             display: inline-flex;
             align-items: center;
@@ -374,7 +315,6 @@
             border: 1px solid var(--border-color);
         }
 
-        /* Section header with icon */
         .section-header {
             display: flex;
             align-items: center;
@@ -388,7 +328,6 @@
             color: var(--accent-blue);
         }
 
-        /* Hover effects for interactive icons */
         .icon-interactive {
             cursor: pointer;
             transition: transform 0.3s ease, color 0.3s ease;
@@ -450,113 +389,6 @@
             text-decoration: none;
         }
 
-        /* Theme Switcher */
-        .theme-switcher {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1000;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .theme-switcher-label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 0.8rem;
-        }
-
-        .theme-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .theme-btn {
-            padding: 0.6rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-            font-family: inherit;
-            white-space: nowrap;
-        }
-
-        .theme-btn:hover {
-            transform: translateX(4px);
-            border-color: var(--accent-blue);
-        }
-
-        .theme-btn.active {
-            background: var(--accent-blue);
-            border-color: var(--accent-blue);
-            color: white;
-            font-weight: 600;
-        }
-
-        /* 隐藏配色方案切换器 */
-        .theme-switcher.hidden {
-            transform: translateX(calc(100% + 2rem));
-        }
-
-        /* 切换按钮 */
-        .theme-toggle-btn {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 10001;
-            font-size: 1.2rem;
-        }
-
-        .theme-toggle-btn:hover {
-            background: var(--accent-blue);
-            border-color: var(--accent-blue);
-            transform: scale(1.1);
-        }
-
-        @media (max-width: 768px) {
-            .theme-switcher {
-                top: 1rem;
-                right: 1rem;
-                padding: 0.8rem;
-            }
-
-            .theme-btn {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.8rem;
-            }
-
-            .theme-toggle-btn {
-                top: 1rem;
-                right: 1rem;
-                width: 36px;
-                height: 36px;
-                font-size: 1rem;
-            }
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .card-grid { grid-template-columns: 1fr; }
@@ -565,23 +397,7 @@
 </head>
 <body>
 
-<!-- ==================== Theme Toggle Button ==================== -->
-<button class="theme-toggle-btn" id="themeToggleBtn" title="切换配色方案面板">
-    🎨
-</button>
-
-<!-- ==================== Theme Switcher ==================== -->
-<div class="theme-switcher" id="themeSwitcher">
-    <span class="theme-switcher-label">配色方案</span>
-    <div class="theme-buttons">
-        <button class="theme-btn active" data-theme="default">经典蓝紫</button>
-        <button class="theme-btn" data-theme="cyberpunk">赛博朋克</button>
-        <button class="theme-btn" data-theme="apple">苹果极简</button>
-        <button class="theme-btn" data-theme="carbon">碳薄荷</button>
-    </div>
-</div>
-
-<!-- ==================== Hero ==================== -->
+<!-- Hero -->
 <section class="hero">
     <div class="hero-badge">{{BADGE}}</div>
     <h1>{{HERO_TITLE}}</h1>
@@ -589,10 +405,10 @@
     <div class="hero-arrow"><span>↓</span></div>
 </section>
 
-<!-- ==================== Content Sections ==================== -->
+<!-- Content Sections -->
 {{CONTENT}}
 
-<!-- ==================== Footer ==================== -->
+<!-- Footer -->
 <footer class="footer">
     <p>{{FOOTER}}</p>
 </footer>
@@ -610,65 +426,6 @@ document.querySelectorAll('.section').forEach(s => observer.observe(s));
 
 // Initialize Lucide icons
 lucide.createIcons();
-
-// Theme Switcher
-const themeButtons = document.querySelectorAll('.theme-btn');
-const body = document.body;
-
-// 从localStorage读取保存的主题
-const savedTheme = localStorage.getItem('theme') || 'default';
-if (savedTheme !== 'default') {
-    body.setAttribute('data-theme', savedTheme);
-    themeButtons.forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.getAttribute('data-theme') === savedTheme) {
-            btn.classList.add('active');
-        }
-    });
-}
-
-// 主题切换功能
-themeButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const theme = button.getAttribute('data-theme');
-
-        // 移除所有按钮的active类
-        themeButtons.forEach(btn => btn.classList.remove('active'));
-
-        // 添加active类到当前按钮
-        button.classList.add('active');
-
-        // 应用主题
-        if (theme === 'default') {
-            body.removeAttribute('data-theme');
-        } else {
-            body.setAttribute('data-theme', theme);
-        }
-
-        // 保存主题到localStorage
-        localStorage.setItem('theme', theme);
-
-        // 重新初始化图标以适应新主题
-        lucide.createIcons();
-    });
-});
-
-// 配色方案面板显示/隐藏功能
-const themeToggleBtn = document.getElementById('themeToggleBtn');
-const themeSwitcher = document.getElementById('themeSwitcher');
-
-// 从localStorage读取面板显示状态
-const panelHidden = localStorage.getItem('themePanelHidden') === 'true';
-if (panelHidden) {
-    themeSwitcher.classList.add('hidden');
-}
-
-// 切换按钮点击事件
-themeToggleBtn.addEventListener('click', () => {
-    themeSwitcher.classList.toggle('hidden');
-    const isHidden = themeSwitcher.classList.contains('hidden');
-    localStorage.setItem('themePanelHidden', isHidden);
-});
 </script>
 
 </body>
