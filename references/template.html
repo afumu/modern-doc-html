@@ -505,6 +505,37 @@
             font-weight: 600;
         }
 
+        /* 隐藏配色方案切换器 */
+        .theme-switcher.hidden {
+            transform: translateX(calc(100% + 2rem));
+        }
+
+        /* 切换按钮 */
+        .theme-toggle-btn {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10001;
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            transform: scale(1.1);
+        }
+
         @media (max-width: 768px) {
             .theme-switcher {
                 top: 1rem;
@@ -516,6 +547,14 @@
                 padding: 0.5rem 0.8rem;
                 font-size: 0.8rem;
             }
+
+            .theme-toggle-btn {
+                top: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
         }
 
         /* Responsive */
@@ -526,8 +565,13 @@
 </head>
 <body>
 
+<!-- ==================== Theme Toggle Button ==================== -->
+<button class="theme-toggle-btn" id="themeToggleBtn" title="切换配色方案面板">
+    🎨
+</button>
+
 <!-- ==================== Theme Switcher ==================== -->
-<div class="theme-switcher">
+<div class="theme-switcher" id="themeSwitcher">
     <span class="theme-switcher-label">配色方案</span>
     <div class="theme-buttons">
         <button class="theme-btn active" data-theme="default">经典蓝紫</button>
@@ -607,6 +651,23 @@ themeButtons.forEach(button => {
         // 重新初始化图标以适应新主题
         lucide.createIcons();
     });
+});
+
+// 配色方案面板显示/隐藏功能
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+const themeSwitcher = document.getElementById('themeSwitcher');
+
+// 从localStorage读取面板显示状态
+const panelHidden = localStorage.getItem('themePanelHidden') === 'true';
+if (panelHidden) {
+    themeSwitcher.classList.add('hidden');
+}
+
+// 切换按钮点击事件
+themeToggleBtn.addEventListener('click', () => {
+    themeSwitcher.classList.toggle('hidden');
+    const isHidden = themeSwitcher.classList.contains('hidden');
+    localStorage.setItem('themePanelHidden', isHidden);
 });
 </script>
 
