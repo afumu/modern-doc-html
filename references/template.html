@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>测试页面 - 内容居中验证</title>
+    <title>{{TITLE}}</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* 配色方案 1: 经典蓝紫（默认） */
         :root {
             --bg-primary: #0a0e17;
             --bg-secondary: #111827;
@@ -22,6 +23,57 @@
             --accent-pink: #ec4899;
             --border-color: #1e293b;
             --code-bg: #0d1117;
+        }
+
+        /* 配色方案 2: 赛博朋克霓虹 */
+        [data-theme="cyberpunk"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #001F3D;
+            --bg-card: #1a1a2e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent-green: #00ff00;
+            --accent-blue: #00ffff;
+            --accent-purple: #ff00ff;
+            --accent-orange: #ff6b00;
+            --accent-cyan: #00ffff;
+            --accent-pink: #ff3d94;
+            --border-color: #2a2a3e;
+            --code-bg: #0d0d0d;
+        }
+
+        /* 配色方案 3: 苹果极简科技 */
+        [data-theme="apple"] {
+            --bg-primary: #000000;
+            --bg-secondary: #1c1c1e;
+            --bg-card: #2c2c2e;
+            --text-primary: #ffffff;
+            --text-secondary: #8e8e93;
+            --accent-green: #34c759;
+            --accent-blue: #007aff;
+            --accent-purple: #af52de;
+            --accent-orange: #ff9500;
+            --accent-cyan: #5ac8fa;
+            --accent-pink: #ff2d55;
+            --border-color: #38383a;
+            --code-bg: #1c1c1e;
+        }
+
+        /* 配色方案 4: 碳薄荷暗黑 */
+        [data-theme="carbon"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1c1c1c;
+            --bg-card: #252525;
+            --text-primary: #e5e5e5;
+            --text-secondary: #b8b8b8;
+            --accent-green: #00ffa3;
+            --accent-blue: #00d4ff;
+            --accent-purple: #b794f6;
+            --accent-orange: #ffa500;
+            --accent-cyan: #00ffa3;
+            --accent-pink: #ff6ec7;
+            --border-color: #333333;
+            --code-bg: #0d0d0d;
         }
 
         body {
@@ -116,7 +168,9 @@
             50% { transform: translateY(10px); }
         }
 
-        /* Animations */
+        /* ==================== New Animations ==================== */
+
+        /* Entry Animations */
         @keyframes slideInLeft {
             from { opacity: 0; transform: translateX(-50px); }
             to { opacity: 1; transform: translateX(0); }
@@ -137,6 +191,7 @@
             to { opacity: 1; transform: rotate(0) scale(1); }
         }
 
+        /* Continuous Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -163,6 +218,7 @@
             75% { transform: translateX(5px); }
         }
 
+        /* Animation Classes */
         .anim-slideInLeft { animation: slideInLeft 0.6s ease forwards; }
         .anim-slideInRight { animation: slideInRight 0.6s ease forwards; }
         .anim-scaleIn { animation: scaleIn 0.6s ease forwards; }
@@ -173,6 +229,7 @@
         .anim-spin { animation: spin 2s linear infinite; }
         .anim-shake { animation: shake 0.5s ease; }
 
+        /* Stagger delays */
         .stagger-1 { animation-delay: 0.1s; }
         .stagger-2 { animation-delay: 0.2s; }
         .stagger-3 { animation-delay: 0.3s; }
@@ -180,6 +237,7 @@
         .stagger-5 { animation-delay: 0.5s; }
         .stagger-6 { animation-delay: 0.6s; }
 
+        /* Reduced motion support */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -203,6 +261,7 @@
             transform: translateY(0);
         }
 
+        /* 确保section内容居中 */
         .section.center {
             text-align: center;
         }
@@ -268,7 +327,9 @@
             margin-bottom: 1rem;
         }
 
-        /* Icon Styles */
+        /* ==================== Icon Styles ==================== */
+
+        /* Icon wrapper for background circles/squares */
         .icon-wrapper {
             display: inline-flex;
             align-items: center;
@@ -288,11 +349,13 @@
             background: rgba(59, 130, 246, 0.1);
         }
 
+        /* Icon sizes */
         .icon-sm { width: 1rem; height: 1rem; }
         .icon-md { width: 1.5rem; height: 1.5rem; }
         .icon-lg { width: 2rem; height: 2rem; }
         .icon-xl { width: 3rem; height: 3rem; }
 
+        /* Icon colors */
         .icon-blue { color: var(--accent-blue); }
         .icon-purple { color: var(--accent-purple); }
         .icon-green { color: var(--accent-green); }
@@ -300,6 +363,7 @@
         .icon-cyan { color: var(--accent-cyan); }
         .icon-pink { color: var(--accent-pink); }
 
+        /* Icon box component */
         .icon-box {
             display: inline-flex;
             align-items: center;
@@ -310,10 +374,10 @@
             border: 1px solid var(--border-color);
         }
 
+        /* Section header with icon */
         .section-header {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
@@ -324,6 +388,7 @@
             color: var(--accent-blue);
         }
 
+        /* Hover effects for interactive icons */
         .icon-interactive {
             cursor: pointer;
             transition: transform 0.3s ease, color 0.3s ease;
@@ -333,18 +398,29 @@
             transform: scale(1.1);
         }
 
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Code block */
         .code-block {
             background: var(--code-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 1.5rem 2rem;
-            margin: 2rem auto;
+            margin: 2rem 0;
             overflow-x: auto;
             font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
             font-size: 0.9rem;
             line-height: 1.8;
             white-space: pre;
-            max-width: 800px;
         }
 
         .code-block .comment { color: #6a737d; }
@@ -353,6 +429,7 @@
         .code-block .func { color: #d2a8ff; }
         .code-block .symbol { color: #79c0ff; }
 
+        /* Divider */
         .divider {
             max-width: 1100px;
             margin: 0 auto;
@@ -360,6 +437,7 @@
             border-top: 1px solid var(--border-color);
         }
 
+        /* Footer */
         .footer {
             text-align: center;
             padding: 3rem 2rem;
@@ -372,6 +450,75 @@
             text-decoration: none;
         }
 
+        /* Theme Switcher */
+        .theme-switcher {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-switcher-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+        }
+
+        .theme-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .theme-btn {
+            padding: 0.6rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .theme-btn:hover {
+            transform: translateX(4px);
+            border-color: var(--accent-blue);
+        }
+
+        .theme-btn.active {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .theme-switcher {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.8rem;
+            }
+
+            .theme-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .card-grid { grid-template-columns: 1fr; }
         }
@@ -379,96 +526,31 @@
 </head>
 <body>
 
-<!-- Hero -->
+<!-- ==================== Theme Switcher ==================== -->
+<div class="theme-switcher">
+    <span class="theme-switcher-label">配色方案</span>
+    <div class="theme-buttons">
+        <button class="theme-btn active" data-theme="default">经典蓝紫</button>
+        <button class="theme-btn" data-theme="cyberpunk">赛博朋克</button>
+        <button class="theme-btn" data-theme="apple">苹果极简</button>
+        <button class="theme-btn" data-theme="carbon">碳薄荷</button>
+    </div>
+</div>
+
+<!-- ==================== Hero ==================== -->
 <section class="hero">
-    <div class="hero-badge">测试页面</div>
-    <h1>内容<span class="highlight">居中测试</span></h1>
-    <p class="hero-sub">验证所有内容是否正确居中显示</p>
+    <div class="hero-badge">{{BADGE}}</div>
+    <h1>{{HERO_TITLE}}</h1>
+    <p class="hero-sub">{{HERO_SUBTITLE}}</p>
     <div class="hero-arrow"><span>↓</span></div>
 </section>
 
-<!-- 测试章节1 - 带center类 -->
-<section class="section center" id="test-1">
-    <span class="section-label" style="background: rgba(59,130,246,0.15); color: var(--accent-blue);">测试一</span>
-    <h2>这是居中的标题</h2>
-    <p>这是一段居中的描述文字。所有文本内容都应该在页面中央显示。</p>
+<!-- ==================== Content Sections ==================== -->
+{{CONTENT}}
 
-    <div class="card-grid">
-        <div class="card">
-            <div class="icon-wrapper circle">
-                <i data-lucide="rocket" class="icon-lg icon-blue"></i>
-            </div>
-            <h3>功能一</h3>
-            <p>这是卡片内容，卡片网格应该居中，但卡片内的文字左对齐。</p>
-        </div>
-        <div class="card">
-            <div class="icon-wrapper circle">
-                <i data-lucide="zap" class="icon-lg icon-purple"></i>
-            </div>
-            <h3>功能二</h3>
-            <p>卡片内容保持左对齐，这样阅读体验更好。</p>
-        </div>
-        <div class="card">
-            <div class="icon-wrapper circle">
-                <i data-lucide="star" class="icon-lg icon-green"></i>
-            </div>
-            <h3>功能三</h3>
-            <p>整个卡片网格在页面中居中显示。</p>
-        </div>
-    </div>
-</section>
-
-<hr class="divider">
-
-<!-- 测试章节2 - 带图标标题 -->
-<section class="section center" id="test-2">
-    <span class="section-label" style="background: rgba(168,85,247,0.15); color: var(--accent-purple);">测试二</span>
-
-    <div class="section-header">
-        <i data-lucide="sparkles" class="section-icon icon-purple anim-float"></i>
-        <h2>带图标的标题</h2>
-    </div>
-
-    <p>这个章节的标题带有浮动动画的图标，整体应该居中显示。</p>
-
-    <div class="code-block">
-<span class="comment"># 代码块示例</span>
-<span class="keyword">def</span> <span class="func">hello_world</span>():
-    <span class="keyword">print</span>(<span class="string">"Hello, World!"</span>)
-    <span class="keyword">return</span> <span class="symbol">True</span>
-    </div>
-</section>
-
-<hr class="divider">
-
-<!-- 测试章节3 - 交错动画 -->
-<section class="section center" id="test-3">
-    <span class="section-label" style="background: rgba(34,197,94,0.15); color: var(--accent-green);">测试三</span>
-    <h2>交错动画效果</h2>
-    <p>这些卡片会依次出现，整体居中显示。</p>
-
-    <div class="card-grid">
-        <div class="card anim-scaleIn stagger-1">
-            <div class="card-icon">1️⃣</div>
-            <h3>第一个</h3>
-            <p>0.1秒延迟出现</p>
-        </div>
-        <div class="card anim-scaleIn stagger-2">
-            <div class="card-icon">2️⃣</div>
-            <h3>第二个</h3>
-            <p>0.2秒延迟出现</p>
-        </div>
-        <div class="card anim-scaleIn stagger-3">
-            <div class="card-icon">3️⃣</div>
-            <h3>第三个</h3>
-            <p>0.3秒延迟出现</p>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
+<!-- ==================== Footer ==================== -->
 <footer class="footer">
-    <p>现代文档 HTML 生成器 - 内容居中测试页面</p>
+    <p>{{FOOTER}}</p>
 </footer>
 
 <script>
@@ -484,6 +566,48 @@ document.querySelectorAll('.section').forEach(s => observer.observe(s));
 
 // Initialize Lucide icons
 lucide.createIcons();
+
+// Theme Switcher
+const themeButtons = document.querySelectorAll('.theme-btn');
+const body = document.body;
+
+// 从localStorage读取保存的主题
+const savedTheme = localStorage.getItem('theme') || 'default';
+if (savedTheme !== 'default') {
+    body.setAttribute('data-theme', savedTheme);
+    themeButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-theme') === savedTheme) {
+            btn.classList.add('active');
+        }
+    });
+}
+
+// 主题切换功能
+themeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const theme = button.getAttribute('data-theme');
+
+        // 移除所有按钮的active类
+        themeButtons.forEach(btn => btn.classList.remove('active'));
+
+        // 添加active类到当前按钮
+        button.classList.add('active');
+
+        // 应用主题
+        if (theme === 'default') {
+            body.removeAttribute('data-theme');
+        } else {
+            body.setAttribute('data-theme', theme);
+        }
+
+        // 保存主题到localStorage
+        localStorage.setItem('theme', theme);
+
+        // 重新初始化图标以适应新主题
+        lucide.createIcons();
+    });
+});
 </script>
 
 </body>
