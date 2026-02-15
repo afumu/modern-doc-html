@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icons & Animations Reference - Modern Doc HTML</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2332;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent-green: #22c55e;
+            --accent-blue: #3b82f6;
+            --accent-purple: #a855f7;
+            --accent-orange: #f97316;
+            --accent-cyan: #06b6d4;
+            --accent-pink: #ec4899;
+            --border-color: #1e293b;
+            --code-bg: #0d1117;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid var(--accent-purple);
+            border-radius: 999px;
+            color: var(--accent-purple);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards 0.2s;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards 0.4s;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* New Animations */
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-10deg) scale(0.9); }
+            to { opacity: 1; transform: rotate(0) scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.6); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Animation Classes */
+        .anim-slideInLeft { animation: slideInLeft 0.6s ease forwards; }
+        .anim-slideInRight { animation: slideInRight 0.6s ease forwards; }
+        .anim-scaleIn { animation: scaleIn 0.6s ease forwards; }
+        .anim-rotateIn { animation: rotateIn 0.6s ease forwards; }
+        .anim-float { animation: float 3s ease-in-out infinite; }
+        .anim-pulse { animation: pulse 2s ease-in-out infinite; }
+        .anim-glow { animation: glow 2s ease-in-out infinite; }
+        .anim-spin { animation: spin 2s linear infinite; }
+        .anim-shake { animation: shake 0.5s ease; }
+
+        /* Stagger delays */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+
+        /* Sections */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+            max-width: 800px;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Icon Styles */
+        .icon-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .icon-wrapper.circle {
+            border-radius: 50%;
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .icon-wrapper.square {
+            border-radius: 8px;
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .icon-sm { width: 1rem; height: 1rem; }
+        .icon-md { width: 1.5rem; height: 1.5rem; }
+        .icon-lg { width: 2rem; height: 2rem; }
+        .icon-xl { width: 3rem; height: 3rem; }
+
+        .icon-blue { color: var(--accent-blue); }
+        .icon-purple { color: var(--accent-purple); }
+        .icon-green { color: var(--accent-green); }
+        .icon-orange { color: var(--accent-orange); }
+        .icon-cyan { color: var(--accent-cyan); }
+        .icon-pink { color: var(--accent-pink); }
+
+        .icon-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            margin: 0.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 2rem;
+            height: 2rem;
+            color: var(--accent-blue);
+        }
+
+        .divider {
+            max-width: 1100px;
+            margin: 0 auto;
+            border: none;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .demo-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .demo-item h4 {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-grid { grid-template-columns: 1fr; }
+            .demo-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-badge">REFERENCE GUIDE</div>
+    <h1>Icons & <span class="highlight">Animations</span></h1>
+    <p class="hero-sub">Complete showcase of Lucide icons and animation effects for modern-doc-html</p>
+</section>
+
+<!-- Icon Sizes -->
+<section class="section" id="icon-sizes">
+    <span class="section-label" style="background: rgba(59,130,246,0.15); color: var(--accent-blue);">ICONS</span>
+    <h2>Icon Sizes</h2>
+    <p>Four size options for Lucide icons: small, medium, large, and extra-large.</p>
+
+    <div class="demo-grid">
+        <div class="demo-item">
+            <i data-lucide="star" class="icon-sm icon-blue"></i>
+            <h4>icon-sm (1rem)</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="star" class="icon-md icon-blue"></i>
+            <h4>icon-md (1.5rem)</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="star" class="icon-lg icon-blue"></i>
+            <h4>icon-lg (2rem)</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="star" class="icon-xl icon-blue"></i>
+            <h4>icon-xl (3rem)</h4>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- Icon Colors -->
+<section class="section" id="icon-colors">
+    <span class="section-label" style="background: rgba(168,85,247,0.15); color: var(--accent-purple);">COLORS</span>
+    <h2>Icon Colors</h2>
+    <p>Six accent colors matching the design system.</p>
+
+    <div class="demo-grid">
+        <div class="demo-item">
+            <i data-lucide="heart" class="icon-xl icon-blue"></i>
+            <h4>icon-blue</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="heart" class="icon-xl icon-purple"></i>
+            <h4>icon-purple</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="heart" class="icon-xl icon-green"></i>
+            <h4>icon-green</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="heart" class="icon-xl icon-orange"></i>
+            <h4>icon-orange</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="heart" class="icon-xl icon-cyan"></i>
+            <h4>icon-cyan</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="heart" class="icon-xl icon-pink"></i>
+            <h4>icon-pink</h4>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- Icon Wrappers -->
+<section class="section" id="icon-wrappers">
+    <span class="section-label" style="background: rgba(34,197,94,0.15); color: var(--accent-green);">WRAPPERS</span>
+    <h2>Icon Wrappers</h2>
+    <p>Add background shapes to icons for emphasis.</p>
+
+    <div class="demo-grid">
+        <div class="demo-item">
+            <div class="icon-wrapper circle">
+                <i data-lucide="rocket" class="icon-lg icon-blue"></i>
+            </div>
+            <h4>Circle Wrapper</h4>
+        </div>
+        <div class="demo-item">
+            <div class="icon-wrapper square">
+                <i data-lucide="zap" class="icon-lg icon-purple"></i>
+            </div>
+            <h4>Square Wrapper</h4>
+        </div>
+        <div class="demo-item">
+            <div class="icon-box">
+                <i data-lucide="check-circle" class="icon-xl icon-green"></i>
+            </div>
+            <h4>Icon Box</h4>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- Popular Icons -->
+<section class="section" id="popular-icons">
+    <span class="section-label" style="background: rgba(249,115,22,0.15); color: var(--accent-orange);">LIBRARY</span>
+    <h2>Popular Icons</h2>
+    <p>Commonly used Lucide icons. Browse all 1000+ icons at <a href="https://lucide.dev" style="color: var(--accent-orange);">lucide.dev</a></p>
+
+    <div class="demo-grid">
+        <div class="demo-item">
+            <i data-lucide="rocket" class="icon-xl icon-blue"></i>
+            <h4>rocket</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="zap" class="icon-xl icon-purple"></i>
+            <h4>zap</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="star" class="icon-xl icon-orange"></i>
+            <h4>star</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="heart" class="icon-xl icon-pink"></i>
+            <h4>heart</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="check-circle" class="icon-xl icon-green"></i>
+            <h4>check-circle</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="alert-circle" class="icon-xl icon-orange"></i>
+            <h4>alert-circle</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="code" class="icon-xl icon-cyan"></i>
+            <h4>code</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="terminal" class="icon-xl icon-blue"></i>
+            <h4>terminal</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="cpu" class="icon-xl icon-purple"></i>
+            <h4>cpu</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="database" class="icon-xl icon-green"></i>
+            <h4>database</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="server" class="icon-xl icon-blue"></i>
+            <h4>server</h4>
+        </div>
+        <div class="demo-item">
+            <i data-lucide="cloud" class="icon-xl icon-cyan"></i>
+            <h4>cloud</h4>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- Entry Animations -->
+<section class="section" id="entry-animations">
+    <span class="section-label" style="background: rgba(6,182,212,0.15); color: var(--accent-cyan);">ANIMATIONS</span>
+    <h2>Entry Animations</h2>
+    <p>Animations that play once when elements appear.</p>
+
+    <div class="card-grid">
+        <div class="card anim-slideInLeft">
+            <div class="icon-wrapper circle">
+                <i data-lucide="arrow-left" class="icon-lg icon-blue"></i>
+            </div>
+            <h3>slideInLeft</h3>
+            <p>Slides in from the left side</p>
+        </div>
+        <div class="card anim-slideInRight">
+            <div class="icon-wrapper circle">
+                <i data-lucide="arrow-right" class="icon-lg icon-purple"></i>
+            </div>
+            <h3>slideInRight</h3>
+            <p>Slides in from the right side</p>
+        </div>
+        <div class="card anim-scaleIn">
+            <div class="icon-wrapper circle">
+                <i data-lucide="maximize" class="icon-lg icon-green"></i>
+            </div>
+            <h3>scaleIn</h3>
+            <p>Scales up from small to full size</p>
+        </div>
+        <div class="card anim-rotateIn">
+            <div class="icon-wrapper circle">
+                <i data-lucide="rotate-cw" class="icon-lg icon-orange"></i>
+            </div>
+            <h3>rotateIn</h3>
+            <p>Rotates while fading in</p>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- Continuous Animations -->
+<section class="section" id="continuous-animations">
+    <span class="section-label" style="background: rgba(236,72,153,0.15); color: var(--accent-pink);">CONTINUOUS</span>
+    <h2>Continuous Animations</h2>
+    <p>Animations that loop infinitely for emphasis.</p>
+
+    <div class="demo-grid">
+        <div class="demo-item">
+            <div class="icon-box anim-float">
+                <i data-lucide="cloud" class="icon-xl icon-blue"></i>
+            </div>
+            <h4>anim-float</h4>
+        </div>
+        <div class="demo-item">
+            <div class="icon-box anim-pulse">
+                <i data-lucide="heart" class="icon-xl icon-pink"></i>
+            </div>
+            <h4>anim-pulse</h4>
+        </div>
+        <div class="demo-item">
+            <div class="icon-box anim-glow">
+                <i data-lucide="zap" class="icon-xl icon-purple"></i>
+            </div>
+            <h4>anim-glow</h4>
+        </div>
+        <div class="demo-item">
+            <div class="icon-box anim-spin">
+                <i data-lucide="loader" class="icon-xl icon-cyan"></i>
+            </div>
+            <h4>anim-spin</h4>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- Staggered Animations -->
+<section class="section" id="stagger">
+    <span class="section-label" style="background: rgba(168,85,247,0.15); color: var(--accent-purple);">STAGGER</span>
+    <h2>Staggered Animations</h2>
+    <p>Sequential reveals with delay classes.</p>
+
+    <div class="card-grid">
+        <div class="card anim-scaleIn stagger-1">
+            <div class="card-icon">1️⃣</div>
+            <h3>First</h3>
+            <p>Appears with 0.1s delay</p>
+        </div>
+        <div class="card anim-scaleIn stagger-2">
+            <div class="card-icon">2️⃣</div>
+            <h3>Second</h3>
+            <p>Appears with 0.2s delay</p>
+        </div>
+        <div class="card anim-scaleIn stagger-3">
+            <div class="card-icon">3️⃣</div>
+            <h3>Third</h3>
+            <p>Appears with 0.3s delay</p>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- Combined Examples -->
+<section class="section" id="examples">
+    <span class="section-label" style="background: rgba(34,197,94,0.15); color: var(--accent-green);">EXAMPLES</span>
+
+    <div class="section-header">
+        <i data-lucide="sparkles" class="section-icon icon-green anim-float"></i>
+        <h2>Combined Examples</h2>
+    </div>
+
+    <p>Real-world examples combining icons and animations.</p>
+
+    <div class="card-grid">
+        <div class="card">
+            <div class="icon-wrapper circle">
+                <i data-lucide="rocket" class="icon-lg icon-blue anim-float"></i>
+            </div>
+            <h3>Fast Performance</h3>
+            <p>Lightning-fast load times with optimized assets and modern techniques.</p>
+        </div>
+        <div class="card">
+            <div class="icon-wrapper circle">
+                <i data-lucide="shield-check" class="icon-lg icon-green anim-pulse"></i>
+            </div>
+            <h3>Secure by Default</h3>
+            <p>Built-in security features to protect your data and users.</p>
+        </div>
+        <div class="card">
+            <div class="icon-wrapper circle">
+                <i data-lucide="palette" class="icon-lg icon-purple"></i>
+            </div>
+            <h3>Beautiful Design</h3>
+            <p>Modern, clean interface with attention to every detail.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>Modern Doc HTML - Icons & Animations Reference Guide</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+// Initialize Lucide icons
+lucide.createIcons();
+</script>
+
+</body>
+</html>
